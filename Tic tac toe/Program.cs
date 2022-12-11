@@ -9,7 +9,7 @@ user from making an illegal move! Below is an example game
 using System.Numerics;
 
 char[] pos= new char[9];
-bool end = false;
+bool playing = true;
 bool X = true;
 bool O = true;
 Console.WriteLine("Hello, World!");
@@ -22,7 +22,7 @@ Console.WriteLine("   |   |   ");
 Console.WriteLine("---+---+---");
 Console.WriteLine("   |   |   ");
 
-while(true)
+while(playing)
 {
     
     try 
