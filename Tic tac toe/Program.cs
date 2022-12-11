@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Modify the tic-tac-toe game from the previous set of exercises. Now, instead of asking the user to 
  * provide the whole state of the game at once, the user should place each symbol one move at a time 
 – just like in a normal tic-tac-toe game – X and O in turns. For now, you don’t have to check if 
@@ -12,6 +12,7 @@ char[] pos= new char[9];
 bool playing = true;
 bool X = true;
 bool O = true;
+int end = 0;
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Welcome to the tic-tac-toe!");
 Console.WriteLine("");
@@ -27,54 +28,66 @@ while(playing)
     
     try 
     {
+        
         if (X)
         {
+            Again:
             Console.WriteLine("\n");
             Console.Write("X's move > ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
-            if (pos[choice] != 'X' && pos[choice] != 'O')
+            if (pos[choice - 1] != 'X' && pos[choice - 1] != 'O')
             {
-                pos[choice] = 'X';
+                pos[choice - 1] = 'X';
                 Board();// calling the board Function
+                end += 1;
             }
             else
             {
                 Console.WriteLine("Illegal move! Try again.");
                 Console.WriteLine("\n");
-
+                goto Again;
             }
 
         }
         if (O)
         {
+            Again:
             Console.WriteLine("\n");
             Console.Write("O's move > ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
-            if (pos[choice] != 'X' && pos[choice] != 'O')
+            if (pos[choice-1] != 'X' && pos[choice-1] != 'O')
             {
-                pos[choice] = 'O';
+                pos[choice - 1] = 'O';
                 Board();// calling the board Function
+                end += 1;
             }
             else
             {
                 Console.WriteLine("Illegal move! Try again.");
 
                 Console.WriteLine("\n");
+                goto Again;
             }
         }
     }
     catch
     {
         Console.WriteLine("Illegal move! Try again.");
-        Console.ReadLine();
+        
     }
-    
+    if(end == 9)
+    {
+        Console.WriteLine("\n");
+        Console.WriteLine("Game Over");
+        Environment.Exit(0);
+    }
     
 }
 
-    // Board method which creats board
+
+    // Board function which creats board
     void Board()
 {
     Console.WriteLine($" {pos[0]} | {pos[1]} | {pos[2]} ");
