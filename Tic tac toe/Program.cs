@@ -81,7 +81,7 @@ while(playing)
     {
         Console.WriteLine("\n");
         Console.WriteLine("Game Over");
-        Environment.Exit(0);
+        break;
     }
     
 }
